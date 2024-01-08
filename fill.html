@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #007bff;
+      background: linear-gradient(to right, #0062E6, #33AEFF);
+    }
+
+    .card-img-left {
+      width: 45%;
+      /* Link to your background image using in the property below! */
+      background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+      background-size: cover;
+    }
+
+    .btn-login {
+      font-size: 0.9rem;
+      letter-spacing: 0.05rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .btn-google {
+      color: white !important;
+      background-color: #ea4335;
+    }
+
+    .btn-facebook {
+      color: white !important;
+      background-color: #3b5998;
+    }
+
+    /* Additional styles for radio buttons */
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      width: 100%;
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #adb5bd;
+      border-radius: 50%;
+      outline: none;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    input[type="radio"]:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    input[type="radio"]:checked::before {
+      content: '\f00c'; /* Checkmark icon from Font Awesome */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 16px; /* Adjust font size */
+      display: block;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    /* Adjust font size, color, and other properties for label text */
+    .form-check-label {
+      font-size: 1.2rem; /* Adjust label font size */
+      color: #212529; /* Label text color */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      /* border: 2px solid black; */
+      padding: 10px 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-xl-4 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">MySubsidy</h5>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase w-100" onclick="goToHomePage()">
+                  Home
+                </button>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  Payment Method
+                </button>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="payment" id="cardRadio" value="IC">
+                <label class="form-check-label" for="cardRadio"><i class="far fa-id-card me-2 mr-2"></i>IC</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="payment" id="ewalletRadio" value="ewallet">
+                <label class="form-check-label" for="ewalletRadio"><i class="far fa-credit-card me-2 mr-2"></i>Card / e-Wallet</label>
+              </div>
+
+              <!-- <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  <i class="far fa-id-card me-2"></i> IC
+                </button>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  <i class="far fa-credit-card me-2"></i> Card / Visa
+                </button>
+              </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-xl-8 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+          <div class="card-body p-4 p-sm-5">
+              <div>
+                <table width="100%">
+                  <tr>
+                    <td>
+                      <img src="Assets/gas-station-ron95.png" alt="RON95" class="mr-2" style="width: 64px;"> RON95
+                    </td>
+                    <td>
+                      <button class="btn btn-secondary" onclick="decreaseFuel('ron95')">-</button>
+                      <span id="ron95Amount" class="mx-2">0</span>
+                      <button class="btn btn-secondary" onclick="increaseFuel('ron95')">+</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <img src="Assets/gas-station-ton97.png" alt="RON97" class="mr-2" style="width: 64px;"> RON97
+                    </td>
+                    <td>
+                      <button class="btn btn-secondary" onclick="decreaseFuel('ron97')">-</button>
+                      <span id="ron97Amount" class="mx-2">0</span>
+                      <button class="btn btn-secondary" onclick="increaseFuel('ron97')">+</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <img src="Assets/fuel.png" alt="DIESEL" class="mr-2" style="width: 64px;"> DIESEL
+                    </td>
+                    <td>
+                      <button class="btn btn-secondary" onclick="decreaseFuel('diesel')">-</button>
+                      <span id="dieselAmount" class="mx-2">0</span>
+                      <button class="btn btn-secondary" onclick="increaseFuel('diesel')">+</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Total</td>
+                    <td><span id="totalPayment">RM 0.00</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>Subsidy Availability</td>
+                    <td><span id="subsidyAvailability">Not Available</span></td>
+                  </tr>
+
+                </table>
+                
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase w-50 mr-2" onclick="goToPayPage()">Confirm</button>
+                  <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-50" onclick="clearAll()">Clear</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let ron95Counter = 0;
+    let ron97Counter = 0;
+    let dieselCounter = 0;
+
+    const RON95_PRICE = 2.50; // Price per liter for RON95
+    const RON97_PRICE = 2.70; // Price per liter for RON97
+    const DIESEL_PRICE = 2.20; // Price per liter for Diesel
+    const SUBSIDY_AMOUNT = 0.10; // Subsidy amount for RON95
+
+    // Define functions to increase and decrease fuel amounts
+    function increaseFuel(type) {
+      switch (type) {
+        case 'ron95':
+          ron95Counter++;
+          document.getElementById('ron95Amount').innerText = ron95Counter;
+          disableButtons('ron95');
+          break;
+        case 'ron97':
+          ron97Counter++;
+          document.getElementById('ron97Amount').innerText = ron97Counter;
+          disableButtons('ron97');
+          break;
+        case 'diesel':
+          dieselCounter++;
+          document.getElementById('dieselAmount').innerText = dieselCounter;
+          disableButtons('diesel');
+          break;
+      }
+      calculateTotalPayment();
+    }
+
+    function decreaseFuel(type) {
+      switch (type) {
+        case 'ron95':
+          if (ron95Counter > 0) {
+            ron95Counter--;
+            document.getElementById('ron95Amount').innerText = ron95Counter;
+          }
+          disableButtons('ron95');
+          break;
+        case 'ron97':
+          if (ron97Counter > 0) {
+            ron97Counter--;
+            document.getElementById('ron97Amount').innerText = ron97Counter;
+          }
+          disableButtons('ron97');
+          break;
+        case 'diesel':
+          if (dieselCounter > 0) {
+            dieselCounter--;
+            document.getElementById('dieselAmount').innerText = dieselCounter;
+          }
+          disableButtons('diesel');
+          break;
+      }
+      calculateTotalPayment();
+    }
+
+    // Disable buttons based on fuel count
+    function disableButtons(type) {
+        switch (type) {
+        case 'ron95':
+        //   document.querySelector('button[onclick="increaseFuel(\'ron95\')"]').disabled = (ron95Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron95\')"]').disabled = (ron95Counter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'ron97\')"]').disabled = (ron95Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron97\')"]').disabled = (ron95Counter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'diesel\')"]').disabled = (ron95Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'diesel\')"]').disabled = (ron95Counter === 0);
+          break;
+        case 'ron97':
+        //   document.querySelector('button[onclick="increaseFuel(\'ron97\')"]').disabled = (ron97Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron97\')"]').disabled = (ron97Counter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'ron95\')"]').disabled = (ron97Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron95\')"]').disabled = (ron97Counter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'diesel\')"]').disabled = (ron97Counter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'diesel\')"]').disabled = (ron97Counter === 0);
+          break;
+        case 'diesel':
+        //   document.querySelector('button[onclick="increaseFuel(\'diesel\')"]').disabled = (dieselCounter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'diesel\')"]').disabled = (dieselCounter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'ron95\')"]').disabled = (dieselCounter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron95\')"]').disabled = (dieselCounter === 0);
+          document.querySelector('button[onclick="increaseFuel(\'ron97\')"]').disabled = (dieselCounter > 0);
+        //   document.querySelector('button[onclick="decreaseFuel(\'ron97\')"]').disabled = (dieselCounter === 0);
+          break;
+      }
+    }
+
+    // Calculate total payment and subsidy availability
+    function calculateTotalPayment() {
+      const totalLiters = ron95Counter + ron97Counter + dieselCounter;
+      let totalPayment = 0;
+
+      switch (true) {
+        case (ron95Counter > 0):
+          totalPayment = ron95Counter * RON95_PRICE;
+          // document.getElementById('subsidyAvailability').innerText = `Available (Subsidy: RM ${(ron95Counter * SUBSIDY_AMOUNT).toFixed(2)})`;
+          document.getElementById('subsidyAvailability').innerText = `Available`;
+          break;
+        case (ron97Counter > 0):
+          totalPayment = ron97Counter * RON97_PRICE;
+          document.getElementById('subsidyAvailability').innerText = 'Not Available';
+          break;
+        case (dieselCounter > 0):
+          totalPayment = dieselCounter * DIESEL_PRICE;
+          document.getElementById('subsidyAvailability').innerText = 'Not Available';
+          break;
+      }
+
+      document.getElementById('totalPayment').innerText = `RM ${totalPayment.toFixed(2)}`;
+    }
+
+    function clearAll() {
+    ron95Counter = 0;
+    ron97Counter = 0;
+    dieselCounter = 0;
+
+    document.getElementById('ron95Amount').innerText = ron95Counter;
+    document.getElementById('ron97Amount').innerText = ron97Counter;
+    document.getElementById('dieselAmount').innerText = dieselCounter;
+
+    document.getElementById('totalPayment').innerText = 'RM 0.00';
+    document.getElementById('subsidyAvailability').innerText = 'Not Available';
+
+    // Enable all buttons
+    enableButtons();
+  }
+
+  // Function to enable all buttons
+  function enableButtons() {
+    document.querySelector('button[onclick="increaseFuel(\'ron95\')"]').disabled = false;
+    document.querySelector('button[onclick="decreaseFuel(\'ron95\')"]').disabled = false;
+    document.querySelector('button[onclick="increaseFuel(\'ron97\')"]').disabled = false;
+    document.querySelector('button[onclick="decreaseFuel(\'ron97\')"]').disabled = false;
+    document.querySelector('button[onclick="increaseFuel(\'diesel\')"]').disabled = false;
+    document.querySelector('button[onclick="decreaseFuel(\'diesel\')"]').disabled = false;
+  }
+
+  function goToPayPage() {
+    const checkedRadio = document.querySelector('input[name="payment"]:checked');
+
+    if (!checkedRadio) {
+      alert('Please select a payment method.'); // Alert the user if no radio button is checked
+      return;
+    }
+    
+    let paymentType = checkedRadio.value;
+    let fuelType = '';
+
+    if (ron95Counter > 0) {
+      fuelType = 'RON95';
+    } else if (ron97Counter > 0) {
+      fuelType = 'RON97';
+    } else if (dieselCounter > 0) {
+      fuelType = 'Diesel';
+    } else {
+      alert('Please select a fuel type.'); // Alert the user if no fuel type is selected
+      return;
+    }
+
+    const liters = ron95Counter + ron97Counter + dieselCounter;
+    let totalPayment = 0;
+    let subsidy = 0;
+
+    if (ron95Counter > 0) {
+        totalPayment = ron95Counter * RON95_PRICE;
+        subsidy = ron95Counter * SUBSIDY_AMOUNT;
+    } else if (ron97Counter > 0) {
+        totalPayment = ron97Counter * RON97_PRICE;
+    } else if (dieselCounter > 0) {
+        totalPayment = dieselCounter * DIESEL_PRICE;
+    }
+
+    // Construct the URL with query parameters
+    const url = `pay.html?paymentType=${paymentType}&fuelType=${fuelType}&liters=${liters}&totalPayment=${totalPayment}&subsidy=${subsidy}`;
+
+    // Navigate to the receipt page with the data in the URL
+    window.location.href = url;
+    }
+
+    function goToHomePage() {
+      window.location.href = "index.html";
+    }
+  </script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS (jQuery included in bundle) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

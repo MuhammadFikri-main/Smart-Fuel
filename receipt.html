@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #007bff;
+      background: linear-gradient(to right, #0062E6, #33AEFF);
+    }
+
+    .card-img-left {
+      width: 45%;
+      /* Link to your background image using in the property below! */
+      background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+      background-size: cover;
+    }
+
+    .btn-login {
+      font-size: 0.9rem;
+      letter-spacing: 0.05rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .btn-google {
+      color: white !important;
+      background-color: #ea4335;
+    }
+
+    .btn-print {
+      color: white !important;
+      background-color: #3b5998;
+    }
+
+    .btn-facebook {
+      color: white !important;
+      background-color: #3b5998;
+    }
+
+    /* Additional styles for radio buttons */
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      width: 100%;
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #adb5bd;
+      border-radius: 50%;
+      outline: none;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    input[type="radio"]:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    input[type="radio"]:checked::before {
+      content: '\f00c'; /* Checkmark icon from Font Awesome */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 16px; /* Adjust font size */
+      display: block;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    /* Adjust font size, color, and other properties for label text */
+    .form-check-label {
+      font-size: 1.2rem; /* Adjust label font size */
+      color: #212529; /* Label text color */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      /* border: 2px solid black; */
+      padding: 10px 20px;
+      width: 100%;
+    }
+
+    /* -------------------------------------
+        OTHER STYLES THAT MIGHT BE USEFUL
+    ------------------------------------- */
+    .last {
+        margin-bottom: 0;
+    }
+
+    .first {
+        margin-top: 0;
+    }
+
+    .aligncenter {
+        text-align: center;
+    }
+
+    .alignright {
+        text-align: right;
+    }
+
+    .alignleft {
+        text-align: left;
+    }
+
+    .clear {
+        clear: both;
+    }
+    /* -------------------------------------
+        INVOICE
+        Styles for the billing table
+    ------------------------------------- */
+    .invoice {
+        margin: 40px auto;
+        text-align: left;
+        width: 80%;
+    }
+    .invoice td {
+        padding: 5px 0;
+    }
+    .invoice .invoice-items {
+        width: 100%;
+    }
+    .invoice .invoice-items td {
+        border-top: #eee 1px solid;
+    }
+    .invoice .invoice-items .total td {
+        border-top: 2px solid #333;
+        border-bottom: 2px solid #333;
+        font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-xl-4 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">MySubsidy</h5>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase w-100" onclick="goToHomePage()">
+                  Home
+                </button>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  Payment Method
+                </button>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  Pay
+                </button>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase w-100">
+                  Receipt
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-xl-8 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+          <div class="card-body p-4 p-sm-5">
+              <!-- Your receipt structure -->
+              <table class="invoice">
+                <tbody>
+                  <tr>
+                    <td class="content-block">
+                        <h2>Thanks for using MySubsidy</h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Invoice #12345<br><span id="currentDate"></span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table class="invoice-items" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td>Payment Type</td>
+                                <td class="alignright"><span id="paymentType"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Fuel Type</td>
+                                <td class="alignright"><span id="fuelType"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Liters</td>
+                                <td class="alignright"><span id="liters"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Subsidy</td>
+                                <td class="alignright">RM <span id="subsidy"></span></td>
+                            </tr>
+                            <tr class="total">
+                                <td class="alignright" width="80%">Total</td>
+                                <td class="alignright">RM <span id="totalPayment"></span></td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="aligncenter content-block">
+                      <a id="downloadLink" class="btn btn-lg btn-print btn-login fw-bold text-uppercase w-50" download="receipt.txt">Print Receipt</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="footer">
+                <table width="100%">
+                    <tbody>
+                      <tr>
+                        <td class="aligncenter content-block">Thank you for using MySubsidy Systems</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Function to extract query parameters from URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Get and display data from query parameters
+    document.getElementById('paymentType').innerText = getQueryParam('paymentType');
+    document.getElementById('fuelType').innerText = getQueryParam('fuelType');
+    document.getElementById('liters').innerText = getQueryParam('liters');
+    document.getElementById('totalPayment').innerText = getQueryParam('totalPayment');
+    document.getElementById('subsidy').innerText = getQueryParam('subsidy');
+
+    // Function to generate and download the receipt content
+    function generateReceipt() {
+      // Get receipt content
+      const totalPayment = parseFloat(getQueryParam('totalPayment')).toFixed(2);
+      const currentDate = new Date().toLocaleDateString('en-US');
+
+      const receiptContent = `
+        Invoice #12345\n
+        Date: ${currentDate}\n
+        Payment Type: ${getQueryParam('paymentType')}\n
+        Fuel Type: ${getQueryParam('fuelType')}\n
+        Liters: ${getQueryParam('liters')}\n
+        Subsidy: RM ${getQueryParam('subsidy')}\n
+        Total: RM ${getQueryParam('totalPayment')}
+      `;
+
+      // Create a Blob with the content
+      const blob = new Blob([receiptContent], { type: 'text/plain' });
+
+      // Create a URL for the Blob
+      const url = URL.createObjectURL(blob);
+
+      // Set the download link href and click it programmatically
+      const downloadLink = document.getElementById('downloadLink');
+      downloadLink.href = url;
+    }
+
+    // Function to get and display the current date
+    function displayCurrentDate() {
+        const currentDate = new Date().toLocaleDateString('en-US');
+        document.getElementById('currentDate').innerText = currentDate;
+    }
+
+    // Call the function to display the current date when the page loads
+    displayCurrentDate();
+
+    // Call generateReceipt() when the page loads or whenever you want to create the receipt content
+    generateReceipt();
+
+    function goToHomePage() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
